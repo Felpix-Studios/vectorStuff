@@ -15,9 +15,9 @@ function setup(){
 
 function draw(){
   background(200);
-  for(let i = 0; i < width; i += 25){
+  for(let i = 13; i < width; i += 25){
     grid[i] = [];
-    for(let j = 0; j < height; j += 25){
+    for(let j = 13; j < height; j += 25){
       grid[i][j]=createVector(i, j)
       drawVector(grid[i][j])
     }
