@@ -1,7 +1,8 @@
 let grid = [];
 let charges = [];
-
 let ticker = 0;
+let textOn = true;
+
 function setup(){
   createCanvas(windowWidth-4, windowHeight-4);
   frameRate(60)
@@ -94,7 +95,9 @@ function drawCharge(){
 	  }
     ellipse(charge.x,charge.y,20*charge.q,20 *charge.q);
     fill(255)
-    text(charge.q, charge.x-7, charge.y+5);
+    if(textOn){
+      text(charge.q, charge.x - 7, charge.y + 5);
+    }
   }
 }
 	
@@ -125,5 +128,8 @@ function keyPressed(){
   if(keyCode===13){
     charges = [];
 
+  }
+  if(keyCode===84){
+    textOn = !textOn;
   }
 }
