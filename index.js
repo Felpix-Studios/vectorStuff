@@ -3,7 +3,7 @@ let charges = [];
 
 let ticker = 0;
 function setup(){
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth-4, windowHeight-4);
   frameRate(60)
   
 
@@ -27,14 +27,14 @@ function draw(){
   if(mouseIsPressed===true){
     noStroke();
     fill(color(198,120,221))
-    ellipse(mouseX, mouseY, 5 * (ticker / 60.0), 5 * (ticker / 60.0));
+    ellipse(mouseX, mouseY, 20*(0.9 + ticker / 30.0), 20*(0.9 + ticker / 30.0));
     ticker+=3;
   }
 }
 
 function drawVector(v){
   push();
-  let k=10000;
+  let k = 50000;
 
   let i = 0;
   let j = 0;
@@ -48,7 +48,7 @@ function drawVector(v){
   //i = k*Math.pow((Math.pow(v.x-mouseX,2)+Math.pow(v.y-mouseY,2)),-1.5)*(v.x-mouseX);
   //j = k*Math.pow((Math.pow(v.x-mouseX, 2) + Math.pow(v.y-mouseY, 2)), -1.5) * (v.y-mouseY);
 
-  if(abs(i)>25 || abs(j)>25){
+  if(abs(i)>21 || abs(j)>21){
     strokeWeight(0);
     fill(200);
   }else{
@@ -63,13 +63,14 @@ function drawVector(v){
 
   noStroke();
 
-  if (abs(i) > 25 || abs(j) > 25) {
+  if (abs(i) > 21 || abs(j) > 21) {
 		fill(200);
   } else {
 		fill(255);
+    noStroke();
+	  ellipse(v.x + i, v.y + j, 5, 5);
   }
-  noStroke();
-  ellipse(v.x + i, v.y + j,5,5);
+  
   pop();
 }
 
@@ -91,7 +92,9 @@ function drawCharge(){
 	  } else {
 	  	fill(neg);
 	  }
-    ellipse(charge.x, charge.y, 5 * charge.q, 5 * charge.q);
+    ellipse(charge.x,charge.y,20*charge.q,20 *charge.q);
+    fill(255)
+    text(charge.q, charge.x-7, charge.y+5);
   }
 }
 	
@@ -106,9 +109,9 @@ function mousePressed(event){
 function mouseReleased(event){
   if (event.button === 2) {
 		// Right click
-		q = new charge(mouseX, mouseY, -(ticker/60.0));
+		q = new charge(mouseX, mouseY, (-(.9+(ticker/30.0))).toFixed(1));
   } else {
-		q = new charge(mouseX, mouseY, (ticker /60.0));
+		q = new charge(mouseX, mouseY, (.9+(ticker /30.0)).toFixed(1));
   }
 
   charges.push(q);
