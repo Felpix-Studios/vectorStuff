@@ -1,7 +1,7 @@
 let grid = [];
 let charges = [];
 let ticker = 0;
-let textOn = true;
+let textOn = false;
 
 function setup(){
   createCanvas(windowWidth-4, windowHeight-4);
